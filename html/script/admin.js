@@ -108,25 +108,16 @@ JSON.parse(localStorage.getItem('products')) : localStorage.setItem('products', 
             }
     ]));
 
-// function showAdmin() {
-//     document.querySelector("#tbl").innerHTML = " ";
-//     products.forEach((product) => {
-//         document.querySelector("#tbl").innerHTML += `
-//         <tr>
-//         <th scope="row">1</th>
-//         <td>${product.id}</td></tr>
-//         <tr>
-//         <th scope="row">2</th>
-//         <td>${product.quantity}</td></tr>
-//         <tr>
-//         <th scope="row">3</th>
-//         <td>${product.price}</td,button></tr>
-//         <tr>
-//         <th scope="row">4</th>
-//         <td>${product.edit}</td></tr>
-//         <th scope="row">5</th>
-//         <td>${product.delete}</td></tr>
-//         `
-//     });
-// }
-// showAdmin();
+function showAdmin() {
+    // document.querySelector("#tbl").innerHTML = " ";
+    products.forEach((product) => {
+        document.querySelector("#tbl").innerHTML += `
+        <tr>
+        <td>${product.brand}</td>
+        <td>${product.product}</td>
+        <td>${product.price}</td>
+        </tr>
+        `
+    });
+}
+showAdmin();
