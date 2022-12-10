@@ -80,7 +80,7 @@ function showAdmin() {
     products.forEach((list) => {
         trow.innerHTML += `
         <tr class= "data">
-        <td>${list.id}</td>
+        <td>${list.id} </td>
         <td>${list.product}</td>
         <td>${list.brand}</td>
         <td>${list.price}</td>
@@ -105,7 +105,7 @@ function showAdmin() {
         </form></div>
         <div class="modal-footer"><button type="button" class="btn btn-primary" id="editInput" >Edit</button>
         </div></div></div></div>
-        <td><button class ="btn btn-dark btn-sm float-center delete" id="deleteInput">Delete</button></td>
+        <td><button class ="btn btn-dark btn-sm float-center delete" id="deleteInput" onclick="">Delete</button></td>
         </tr>
         `;
     });
@@ -158,14 +158,13 @@ function addItem(){
 //     })
 // } 
 
-let deleteButton = document.getElementById('deleteInput');
 function deleteItem(e){ 
     let id = document.querySelector('#idInput').value;
     let product = document.querySelector('#productInput').value;
     let brand = document.querySelector('#brandInput').value;
     let price = document.querySelector('#priceInput').value;
     let p = e.parentNode.parentNode.rowIndex;
-    document.querySelector("table").deleteRow(p);
+    document.querySelector(".table").deleteRow(p);
     products.pop ({
         id,
         product,
@@ -173,23 +172,17 @@ function deleteItem(e){
         price,
         p
     })
+    localStorage.setItem('products',JSON.stringify(products))
 }
 
 // sort
 function sortProduct (){
     products.sort((a, b) => {
-        // if (a.product.toLowerCase() < b.product.toLowerCase()
-        // ) return -1;
-        // if (a.product.product.toLowerCase() > b.product.toLowerCase()
-        // )return 1;
-        // return 0;
         return a.product.toLowerCase() < b.product.toLowerCase() ? -1 : 1;
     })
     localStorage.setItem("products", JSON.stringify(products));
     showAdmin()
 };
-    // document.querySelector("tbody").innerHTML =""
-    // sortProduct()
+
 let sorting = document.getElementById('sort');
 sorting.addEventListener('click',sortProduct);
-    console.log(products);
