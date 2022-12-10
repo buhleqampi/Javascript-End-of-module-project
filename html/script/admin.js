@@ -85,7 +85,7 @@ function showAdmin() {
         <td>${list.brand}</td>
         <td>${list.price}</td>
         <td>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editInput">
+        <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#editInput">
         Edit
         </button>
         <div class="modal fade" id="editInput" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -135,28 +135,23 @@ function addItem(){
     })
 }
 
-// let edit = document.querySelector('#editInput');
-// function editItem(){
-//     edit.addEventListener('click', (e) =>{
-//         e.preventDefault();
-//         if (edit ===id){
-
-
-//         }
-//         let id = document.querySelector('#idInput').value;
-//         let product = document.querySelector('#productInput').value;
-//         let brand = document.querySelector('#brandInput').value;
-//         let price = document.querySelector('#priceInput').value;
-//         products.push ({
-//             id,
-//             product,
-//             brand,
-//             price
-//         })
-//         localStorage.setItem('products', JSON.stringify(products))
-//         showAdmin() 
-//     })
-// } 
+let edit = document.querySelector('#editInput');
+function editItem(){
+    edit.addEventListener('click', (e) =>{
+        let id = document.querySelector('#idInput').value;
+        let product = document.querySelector('#productInput').value;
+        let brand = document.querySelector('#brandInput').value;
+        let price = document.querySelector('#priceInput').value;
+        products.push ({
+            id,
+            product,
+            brand,
+            price
+        })
+        localStorage.setItem('products', JSON.stringify(products))
+        showAdmin() 
+    })
+} 
 
 function deleteItem(e){ 
     let id = document.querySelector('#idInput').value;

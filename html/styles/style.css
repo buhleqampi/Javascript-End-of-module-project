@@ -103,3 +103,8 @@ th {
 table, th, td{
     border-collapse: collapse;
 }
+
+#checkoutInput {
+    border-radius: 8%;
+    width:80%;
+}

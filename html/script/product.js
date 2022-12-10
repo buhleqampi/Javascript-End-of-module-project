@@ -1,3 +1,9 @@
+// let checkout = document.querySelector('#checkoutInput');
+let checkout = [];
+function addToCheckout(list) {
+    checkout.push(list);
+    localStorage.setItem('checkout', JSON.stringify(checkout));
+}
 let products = JSON.parse(localStorage.getItem('products')) ?
 JSON.parse(localStorage.getItem('products')) : localStorage.setItem('products', JSON.stringify(
     [
@@ -83,13 +89,11 @@ function showProducts() {
         <h5>${product.product}</h5>
         <div>${product.brand}</div>
         <div>${product.price}</div>
+        <button onclick='addToCheckout(${addToCheckout(product.id)})' id = "checkoutInput" class ="btn btn-primary">Add to checkout</button>
         <a href="admin.html" class="btn btn-primary mb-2 mt-3 w-75 d-flex justify-content-center" id ="button">Go to admin</a>
         </div>
         `
     });
 }
 showProducts();
-// button
-let button = document.querySelector('#button');
 
-button.addEventListener
