@@ -93,10 +93,13 @@ body */
     background-color: darksalmon;
 }
 
-table {}
-    
-    border:5px solid;
+table {
+    border:2px solid;
     width: 100%;
 }
 th {
-    height:70
+    height:70px;
+}
+table, th, td{
+    border-collapse: collapse;
+}
