@@ -1,37 +1,3 @@
-let admin = [];
-// buttons
-let sort = document.querySelector('#sort');
-let add= document.querySelector('#addition');
-
-// event listener
-// submit.addEventListener('click',(e)=>{
-//     e.preventDefault();
-//     let firstName = document.querySelector('#firstname').value;
-//     let lastName = document.querySelector('#lastname').value;
-//     let address1 = document.querySelector('#address1').value;
-//     let address2 = document.querySelector('#address2').value;
-//     let postalCode = document.querySelector('#postal').value;
-//     let city = document.querySelector('#city').value;
-//     let country = document.querySelector('#country').value;
-//     let email = document.querySelector('#email').value;
-//     let phoneNumber = document.querySelector('#phonenumber').value;
-//     let id = document.querySelector('#ID').value;
-//     let card = document.querySelector('#pay').value;
-//     let nameCard = document.querySelector('#namecard').value;
-//     let cardNumber = document.querySelector('#cardnumber').value;
-//     let year = document.querySelector('#mmyy').value;
-//     let code = document.querySelector('#cvv').value;
-// admin.push({
-//     firstName,
-//     lastName,
-//     address1,
-//     address2,
-//     postalCode,
-//     city,
-//     country
-// })
-// localStorage.setItem('data', JSON.stringify(admin));
-// });
 let products = JSON.parse(localStorage.getItem('products')) ?
 JSON.parse(localStorage.getItem('products')) : localStorage.setItem('products', JSON.stringify(
         [
@@ -109,15 +75,112 @@ JSON.parse(localStorage.getItem('products')) : localStorage.setItem('products', 
     ]));
 
 function showAdmin() {
-    // document.querySelector("#tbl").innerHTML = " ";
-    products.forEach((product) => {
-        document.querySelector("#tbl").innerHTML += `
-        <tr>
-        <td>${product.brand}</td>
-        <td>${product.product}</td>
-        <td>${product.price}</td>
+    let trow = document.querySelector("tbody");
+    trow.innerHTML = "";
+    products.forEach((list) => {
+        trow.innerHTML += `
+        <tr class= "data">
+        <td>${list.id}</td>
+        <td>${list.product}</td>
+        <td>${list.brand}</td>
+        <td>${list.price}</td>
+        <td><button type="button" class="btn btn-dark btn-sm float-center edit">
+        Edit
+        </button>
+        <td><button class ="btn btn-dark btn-sm float-center delete" id="deleteInput">Delete</button></td>
         </tr>
-        `
+        `;
     });
 }
 showAdmin();
+
+
+let submit = document.getElementById('submit');
+function addItem(){
+    submit.addEventListener('click',(e)=> {
+        e.preventDefault();
+        let id = document.querySelector('#idInput').value;
+        let product = document.querySelector('#productInput').value;
+        let brand = document.querySelector('#brandInput').value;
+        let price = document.querySelector('#priceInput').value;
+    products.push ({
+        id,
+        product,
+        brand,
+        price
+    })
+
+
+    localStorage.setItem('products', JSON.stringify(products))
+
+    showAdmin()
+    })
+}
+
+let edit = document.querySelector('#editInput');
+function editItem(){
+    edit.addEventListener('click', (e) =>{
+        e.preventDefault();
+        let id = document.querySelector('#idInput').value;
+        let product = document.querySelector('#productInput').value;
+        let brand = document.querySelector('#brandInput').value;
+        let price = document.querySelector('#priceInput').value;
+        products.push ({
+            id,
+            product,
+            brand,
+            price
+        })
+        localStorage.setItem('products', JSON.stringify(products))
+        showAdmin() 
+    })
+} 
+
+let deleteButton = document.getElementById('deleteInput');
+function deleteItem(e){ 
+    let id = document.querySelector('#idInput').value;
+    let product = document.querySelector('#productInput').value;
+    let brand = document.querySelector('#brandInput').value;
+    let price = document.querySelector('#priceInput').value;
+    let p = e.parentNode.parentNode.rowIndex;
+    document.querySelector("table").deleteRow(p);
+    products.pop ({
+        id,
+        product,
+        brand,
+        price,
+        p
+    })
+}
+
+// let tableProduct = document.getElementById('table');
+// let sort = document.getElementById('sort');
+
+// tableProduct.addEventListener('click',removeProduct);
+// sort.addEventListener('scroll',sortProduct);
+
+
+
+// function removeProduct(e){
+//     if(e.target.classList.contains('delete')){
+//         if(confirm('Are you sure you want to delete?')){
+//             let tr = e.target.parentElement;
+//             tableProduct.removeChild(tr);
+//     }
+//     }}
+
+// let filter = document.getElementById('filter');
+// filter.addEventListener('keyup',filterProduct);
+
+// function filterProduct(e){
+//     let text = e.target.toUpperCase();
+//     let products =tableProduct.getElementsByTagName('tr');
+//     Array.from(products).forEach(function(product){
+
+//     })
+
+// }
+// function sortProduct (e){
+//     e.preventDefault
+//     let text = 
+// }
